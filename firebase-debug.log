@@ -1,0 +1,25 @@
+[debug] [2020-03-30T10:58:14.063Z] ----------------------------------------------------------------------
+[debug] [2020-03-30T10:58:14.065Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mikec\AppData\Local\Yarn\Data\global\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-03-30T10:58:14.065Z] CLI Version:   7.12.1
+[debug] [2020-03-30T10:58:14.065Z] Platform:      win32
+[debug] [2020-03-30T10:58:14.065Z] Node Version:  v12.13.0
+[debug] [2020-03-30T10:58:14.066Z] Time:          Mon Mar 30 2020 18:58:14 GMT+0800 (Australian Western Standard Time)
+[debug] [2020-03-30T10:58:14.066Z] ----------------------------------------------------------------------
+[debug] [2020-03-30T10:58:14.066Z] 
+[debug] [2020-03-30T10:58:14.070Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-30T10:58:14.070Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\dev\me\disco-cube-admin
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
