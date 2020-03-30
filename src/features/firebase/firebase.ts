@@ -38,26 +38,26 @@ export const listenForCubeSnapshots = (handler: (cube: CubeState | undefined) =>
     .onSnapshot(x => handler(x.data() as any));
 
 export const getStatus = () => {
-  firebase
-    .firestore()
-    .collection("status")
-    .where("state", "==", "online")
-    .onSnapshot(function(snapshot) {
-      snapshot.docChanges.forEach(function(change) {
-        if (change.type === "added") {
-          var msg = "User " + change.doc.id + " is online.";
-          console.log(msg);
-          // [START_EXCLUDE]
-          //history.innerHTML += msg + "<br />";
-          // [END_EXCLUDE]
-        }
-        if (change.type === "removed") {
-          var msg = "User " + change.doc.id + " is offline.";
-          console.log(msg);
-          // [START_EXCLUDE]
-          // history.innerHTML += msg + "<br />";
-          // [END_EXCLUDE]
-        }
-      });
-    });
+  // firebase
+  //   .firestore()
+  //   .collection("status")
+  //   .where("state", "==", "online")
+  //   .onSnapshot(function(snapshot) {
+  //     snapshot.docChanges.forEach(function(change) {
+  //       if (change.type === "added") {
+  //         var msg = "User " + change.doc.id + " is online.";
+  //         console.log(msg);
+  //         // [START_EXCLUDE]
+  //         //history.innerHTML += msg + "<br />";
+  //         // [END_EXCLUDE]
+  //       }
+  //       if (change.type === "removed") {
+  //         var msg = "User " + change.doc.id + " is offline.";
+  //         console.log(msg);
+  //         // [START_EXCLUDE]
+  //         // history.innerHTML += msg + "<br />";
+  //         // [END_EXCLUDE]
+  //       }
+  //     });
+  //   });
 };
