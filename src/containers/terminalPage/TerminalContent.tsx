@@ -2,7 +2,6 @@ import * as React from "react";
 import { Segment } from "../../components/segment/Segment";
 import { Input } from "antd";
 import { Vertical } from "gls/lib";
-import { useWindowSize } from "../../features/utils/useWindowSize";
 
 interface Props {
   command: string;
@@ -20,7 +19,7 @@ export const TerminalContent: React.FC<Props> = ({
   onCommandChange,
 }) => {
   return (
-    <Segment spacing={10} width="100%" maxWidth={900} height={"100%"} scroll="vertical">
+    <Segment spacing={10} width="100%" maxWidth={500} height={"100%"} scroll="vertical">
       <Vertical
         style={{
           backgroundColor: "black",

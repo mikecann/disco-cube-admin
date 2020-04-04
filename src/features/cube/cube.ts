@@ -1,12 +1,11 @@
 import { createDomain, Store } from "effector";
 import { logDomain } from "../utils/effector";
+import { FirebaseCubeState, EssentialSystemInfo } from "../../sharedTypes";
 
 const domain = createDomain(`cube`);
 logDomain(domain);
 
-export interface CubeState {
-  isConnected: boolean;
-}
+export type CubeState = FirebaseCubeState;
 
 // Events
 export const cubeSnapshotChanged = domain.createEvent<CubeState>();
@@ -17,10 +16,25 @@ export const cubeSnapshotChanged = domain.createEvent<CubeState>();
 export const cubeStore = domain
   .createStore<CubeState>(
     {
-      isConnected: false,
+      status: "offline",
+      statusChangedAt: undefined,
     },
     { name: `store` }
   )
   .on(cubeSnapshotChanged, (_, payload) => payload);
+
+export const fullSystemInfoStore = cubeStore.map(s =>
+  s.fullSystemInfoJson ? JSON.parse(s.fullSystemInfoJson) : {}
+);
+
+export const essentialStatsStore: Store<EssentialSystemInfo> = cubeStore.map(
+  s =>
+    s.essentialSystemInfo || {
+      batteryLevelPercentage: 0,
+      cpuLoadsPercent: [],
+      cpuTemperature: 0,
+      memUsagePercent: 0,
+    }
+);
 
 export interface CubeStore extends Store<CubeState> {}

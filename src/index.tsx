@@ -16,7 +16,13 @@ async function bootstrap() {
     if (cube) cubeSnapshotChanged(cube);
   });
 
-  listenForFirebaseAuthStateChange(user => (user ? userSignedIn(user) : userSignedOut()));
+  listenForFirebaseAuthStateChange(user => {
+    if (user) {
+      userSignedIn(user);
+    } else {
+      userSignedOut();
+    }
+  });
 
   ReactDOM.render(<App />, document.getElementById("root"));
 }

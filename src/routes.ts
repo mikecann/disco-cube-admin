@@ -5,6 +5,9 @@ export const routes = {
   terminal: {
     path: () => `/terminal`,
   },
+  account: {
+    path: () => `/account`,
+  },
   stats: {
     path: () => `/stats`,
   },
