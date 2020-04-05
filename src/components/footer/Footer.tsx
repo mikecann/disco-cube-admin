@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Segment } from "../segment/Segment";
 import { Menu } from "antd";
-import { CodeOutlined, ControlOutlined, UserOutlined } from "@ant-design/icons";
+import { CodeOutlined, ControlOutlined, UserOutlined, AppstoreOutlined } from "@ant-design/icons";
 import { Horizontal } from "gls/lib";
 import { routes } from "../../routes";
 
@@ -20,6 +20,9 @@ export const Footer: React.FC<Props> = ({ currentPath, onGotoPath }) => {
           </Menu.Item>
           <Menu.Item key="/terminal" onClick={() => onGotoPath(routes.terminal.path())}>
             <CodeOutlined style={{ fontSize: "1.75em" }} />
+          </Menu.Item>
+          <Menu.Item key="/apps" onClick={() => onGotoPath(routes.apps.path())}>
+            <AppstoreOutlined style={{ fontSize: "1.75em" }} />
           </Menu.Item>
           <Menu.Item key="/account" onClick={() => onGotoPath(routes.account.path())}>
             <UserOutlined style={{ fontSize: "1.75em" }} />

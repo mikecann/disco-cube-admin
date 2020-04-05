@@ -3,6 +3,7 @@ import { Segment } from "../../components/segment/Segment";
 import { Input } from "antd";
 import { Vertical, VerticalProps } from "gls/lib";
 import { TerminalState, TerminalCommandExecution } from "../../sharedTypes";
+import { SearchProps } from "antd/lib/input";
 
 interface Props {
   history: TerminalCommandExecution[];
@@ -13,22 +14,26 @@ interface Props {
 
 export const TerminalContent: React.FC<Props> = ({ history, onSendCommand, cwd, status }) => {
   const [command, setCommand] = React.useState("");
-  // const scroller = React.useRef<HTMLDivElement>(null);
+  const search = React.useRef<any>(null);
+  const scroller = React.useRef<HTMLDivElement>(null);
 
-  // React.useEffect(() => {
-  //   if (!scroller.current) return;
-  //   scroller.current.scroll;
-  // }, [history]);
+  React.useEffect(() => {
+    if (!search.current || !search.current.input) return;
+    if (!scroller.current) return;
+    scroller.current.scrollTo();
+    search.current.input.focus();
+  }, [history]);
 
   return (
     <Segment spacing={10} width="100%" maxWidth={500} height={"100%"}>
       <Vertical
+        ref={scroller}
         style={{
           backgroundColor: "black",
           fontFamily: "Consolas,monaco,monospace",
           color: "white",
           minHeight: 300,
-          height: "calc(100% - 10px)",
+          height: "calc(100% - 12px)",
           overflow: "auto",
           padding: 10,
         }}
@@ -39,7 +44,7 @@ export const TerminalContent: React.FC<Props> = ({ history, onSendCommand, cwd, 
         ))}
         <div>{cwd}</div>
         <Input.Search
-          ref={r => console.log("R", r)}
+          ref={search}
           onInput={el => console.log("GOT EL")}
           value={command}
           onChange={e => setCommand(e.target.value)}

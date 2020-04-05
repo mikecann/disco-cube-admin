@@ -8,6 +8,7 @@ import { RootStyles } from "./common/rootStyles/RootStyles";
 import { TerminalPage } from "./containers/terminalPage/TerminalPage";
 import { StatsPage } from "./containers/statsPage/StatsPage";
 import { AccountPage } from "./containers/accountPage/AccountPage";
+import { AppsPage } from "./containers/appsPage/AppsPage";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path={routes.terminal.path()}>
             <TerminalPage />
+          </Route>
+          <Route path={routes.apps.path()}>
+            <AppsPage />
           </Route>
           <Route path={routes.account.path()}>
             <AccountPage />

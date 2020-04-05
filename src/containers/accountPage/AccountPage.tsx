@@ -1,26 +1,20 @@
 import * as React from "react";
-import { Vertical, Stretch } from "gls/lib";
-import { ConnectedFooter } from "../../components/footer/ConnectedFooter";
-import { AuthRequired } from "../../components/authRequired/AuthRequired";
-import { ConnectedAccountPageContent } from "./ConnectedAccountPageContent";
+
+import { useStore } from "effector-react";
+import { authStore, logoutEffect } from "../../features/auth/auth";
+import { Redirect } from "react-router";
+import { routes } from "../../routes";
+import { AccountPageContent } from "./AccountPageContent";
+import { Page } from "../../components/page/Page";
 
 interface Props {}
 
 export const AccountPage: React.FC<Props> = ({}) => {
+  const { user } = useStore(authStore);
+  if (!user) return <Redirect to={routes.login.path()} />;
   return (
-    <Vertical
-      horizontalAlign="center"
-      verticalAlign="center"
-      height="100vh"
-      width="100%"
-      padding={10}
-      spacing={10}
-    >
-      <AuthRequired />
-      <Stretch width="100%" horizontalAlign="center" scroll="overflow">
-        <ConnectedAccountPageContent />
-      </Stretch>
-      <ConnectedFooter />
-    </Vertical>
+    <Page>
+      <AccountPageContent userEmail={user.email + ""} onLogout={() => logoutEffect()} />
+    </Page>
   );
 };

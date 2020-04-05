@@ -1,25 +1,21 @@
 import * as React from "react";
-import { Vertical, Stretch } from "gls/lib";
-import { ConnectedFooter } from "../../components/footer/ConnectedFooter";
-import { ConnectedTerminalContent } from "./ConnectedTerminalContent";
-import { AuthRequired } from "../../components/authRequired/AuthRequired";
+import { Page } from "../../components/page/Page";
+import { terminalStore, sendTerminalCommandEffect } from "../../features/terminal/terminal";
+import { useStore } from "effector-react";
+import { TerminalContent } from "./TerminalContent";
 
 interface Props {}
 
 export const TerminalPage: React.FC<Props> = ({}) => {
+  const { history, status, cwd } = useStore(terminalStore);
   return (
-    <Vertical
-      horizontalAlign="center"
-      verticalAlign="center"
-      height="100vh"
-      padding={10}
-      spacing={10}
-    >
-      <AuthRequired />
-      <Stretch width="100%" horizontalAlign="center" scroll="overflow">
-        <ConnectedTerminalContent />
-      </Stretch>
-      <ConnectedFooter />
-    </Vertical>
+    <Page>
+      <TerminalContent
+        cwd={cwd}
+        status={status}
+        history={history}
+        onSendCommand={sendTerminalCommandEffect}
+      />
+    </Page>
   );
 };
