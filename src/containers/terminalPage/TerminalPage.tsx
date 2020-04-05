@@ -16,7 +16,7 @@ export const TerminalPage: React.FC<Props> = ({}) => {
       spacing={10}
     >
       <AuthRequired />
-      <Stretch>
+      <Stretch width="100%" horizontalAlign="center" scroll="overflow">
         <ConnectedTerminalContent />
       </Stretch>
       <ConnectedFooter />

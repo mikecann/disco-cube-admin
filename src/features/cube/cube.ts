@@ -8,7 +8,7 @@ logDomain(domain);
 export type CubeState = FirebaseCubeState;
 
 // Events
-export const cubeSnapshotChanged = domain.createEvent<CubeState>();
+export const cubeSnapshotChanged = domain.createEvent<any>();
 
 // Effects
 
@@ -21,7 +21,11 @@ export const cubeStore = domain
     },
     { name: `store` }
   )
-  .on(cubeSnapshotChanged, (_, payload) => payload);
+  .on(cubeSnapshotChanged, (_, payload) => {
+    if (payload.statusChangedAt)
+      payload.statusChangedAt = new Date(payload.statusChangedAt.seconds * 1000);
+    return payload;
+  });
 
 export const fullSystemInfoStore = cubeStore.map(s =>
   s.fullSystemInfoJson ? JSON.parse(s.fullSystemInfoJson) : {}

@@ -17,6 +17,8 @@ const config = {
   measurementId: "G-D9SX9GEWJY",
 };
 
+const cubeId = `fmNezwKQFxf0hWcQ4rhc1eMt9WM2`;
+
 export const initFirebase = () => {
   firebase.initializeApp(config);
   firebase.analytics();
@@ -32,29 +34,14 @@ export const signOutOfFirebase = () => firebase.auth().signOut();
 export const listenForFirebaseAuthStateChange = (handler: (user: firebase.User | null) => any) =>
   firebase.auth().onAuthStateChanged(handler);
 
-export const listenForCubeSnapshots = (handler: (cube: CubeState | undefined) => any) =>
-  firebase
-    .firestore()
-    .collection("cubes")
-    .onSnapshot(s => {
-      if (s.docs.length > 0) {
-        const data = s.docs[0].data() as any;
-        if (data.statusChangedAt)
-          data.statusChangedAt = new Date(data.statusChangedAt.seconds * 1000);
-        handler(data);
-      }
-    });
-
 export const listenForFirebaseSnapshots = <T extends keyof FirebaseCollections>(
   collection: T,
   handler: (cube: FirebaseCollections[T] | undefined) => any
 ) => {
-  const currentUser = firebase.auth().currentUser;
-  if (!currentUser) throw new Error(`user must be authenticated`);
   firebase
     .firestore()
     .collection(collection)
-    .doc(currentUser.uid)
+    .doc(cubeId)
     .onSnapshot(x => handler(x.data() as any));
 };
 
@@ -62,12 +49,10 @@ export const setFirebaseState = <T extends keyof FirebaseCollections>(
   collection: T,
   state: FirebaseCollections[T]
 ) => {
-  const currentUser = firebase.auth().currentUser;
-  if (!currentUser) throw new Error(`user must be authenticated`);
   return firebase
     .firestore()
     .collection(collection)
-    .doc(currentUser.uid)
+    .doc(cubeId)
     .set(state);
 };
 
@@ -75,36 +60,9 @@ export const updateFirebaseState = <T extends keyof FirebaseCollections>(
   collection: T,
   partial: Partial<FirebaseCollections[T]>
 ) => {
-  const currentUser = firebase.auth().currentUser;
-  if (!currentUser) throw new Error(`user must be authenticated`);
   return firebase
     .firestore()
     .collection(collection)
-    .doc(currentUser.uid)
+    .doc(cubeId)
     .update(partial);
-};
-
-export const getStatus = () => {
-  // firebase
-  //   .firestore()
-  //   .collection("status")
-  //   .where("state", "==", "online")
-  //   .onSnapshot(function(snapshot) {
-  //     snapshot.docChanges.forEach(function(change) {
-  //       if (change.type === "added") {
-  //         var msg = "User " + change.doc.id + " is online.";
-  //         console.log(msg);
-  //         // [START_EXCLUDE]
-  //         //history.innerHTML += msg + "<br />";
-  //         // [END_EXCLUDE]
-  //       }
-  //       if (change.type === "removed") {
-  //         var msg = "User " + change.doc.id + " is offline.";
-  //         console.log(msg);
-  //         // [START_EXCLUDE]
-  //         // history.innerHTML += msg + "<br />";
-  //         // [END_EXCLUDE]
-  //       }
-  //     });
-  //   });
 };

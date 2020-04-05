@@ -4,16 +4,21 @@ import App from "./App";
 import {
   initFirebase,
   listenForFirebaseAuthStateChange,
-  listenForCubeSnapshots,
+  listenForFirebaseSnapshots,
 } from "./features/firebase/firebase";
 import { userSignedIn, userSignedOut } from "./features/auth/auth";
 import { cubeSnapshotChanged } from "./features/cube/cube";
+import { terminalSnapshotChanged } from "./features/terminal/terminal";
 
 async function bootstrap() {
   initFirebase();
 
-  listenForCubeSnapshots(cube => {
-    if (cube) cubeSnapshotChanged(cube);
+  listenForFirebaseSnapshots("cubes", snapshot => {
+    if (snapshot) cubeSnapshotChanged(snapshot);
+  });
+
+  listenForFirebaseSnapshots("terminals", snapshot => {
+    if (snapshot) terminalSnapshotChanged(snapshot);
   });
 
   listenForFirebaseAuthStateChange(user => {
