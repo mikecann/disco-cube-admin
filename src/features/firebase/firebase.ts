@@ -17,7 +17,8 @@ const config = {
   measurementId: "G-D9SX9GEWJY",
 };
 
-const cubeId = `fmNezwKQFxf0hWcQ4rhc1eMt9WM2`;
+const cubeId = `fmNezwKQFxf0hWcQ4rhc1eMt9WM2`; // cube
+// const cubeId = nibEA4nCmebMoD6wVNa81KoMilq2`// local dev
 
 export const initFirebase = () => {
   firebase.initializeApp(config);

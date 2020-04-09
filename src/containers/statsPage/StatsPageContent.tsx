@@ -4,6 +4,7 @@ import { PageHeader, Statistic, Button, Progress } from "antd";
 import { Stretch, Horizontal, Vertical } from "gls/lib";
 import { SystemInfoTree } from "./SystemInfoTree";
 import { formatDistanceToNow } from "date-fns";
+import { Label } from "../../components/label/Label";
 
 interface Props {
   isConnected: boolean;
@@ -89,7 +90,7 @@ export const StatsPageContent: React.FC<Props> = ({
 
 const Stat: React.FC<{ label: string; width?: number }> = ({ label, width, children }) => (
   <Vertical width={width ?? 180} spacing={5}>
-    <label style={{ color: "rgba(0, 0, 0, 0.45)", textTransform: "uppercase" }}>{label}</label>
+    <Label>{label}</Label>
     {children}
   </Vertical>
 );

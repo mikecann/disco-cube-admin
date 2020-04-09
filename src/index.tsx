@@ -9,6 +9,7 @@ import {
 import { userSignedIn, userSignedOut } from "./features/auth/auth";
 import { cubeSnapshotChanged } from "./features/cube/cube";
 import { terminalSnapshotChanged } from "./features/terminal/terminal";
+import { appsSnapshotChanged } from "./features/apps/apps";
 
 async function bootstrap() {
   initFirebase();
@@ -19,6 +20,10 @@ async function bootstrap() {
 
   listenForFirebaseSnapshots("terminals", snapshot => {
     if (snapshot) terminalSnapshotChanged(snapshot);
+  });
+
+  listenForFirebaseSnapshots("apps", snapshot => {
+    if (snapshot) appsSnapshotChanged(snapshot);
   });
 
   listenForFirebaseAuthStateChange(user => {
