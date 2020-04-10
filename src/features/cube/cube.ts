@@ -31,6 +31,8 @@ export const fullSystemInfoStore = cubeStore.map(s =>
   s.fullSystemInfoJson ? JSON.parse(s.fullSystemInfoJson) : {}
 );
 
+export const isCubeOnlineStore = cubeStore.map(s => s.status === "online");
+
 export const essentialStatsStore: Store<EssentialSystemInfo> = cubeStore.map(
   s =>
     s.essentialSystemInfo || {

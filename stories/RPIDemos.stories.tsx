@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { commonDecorator } from "./utils/utils";
-import { RPIDemos } from "../src/containers/appsPage/RPIDemos";
+import { RPIDemos } from "../src/containers/appsPage/apps/rpi/RPIDemos";
 
 const props: React.ComponentProps<typeof RPIDemos> = {
   onBack: () => alert(`onBack`),

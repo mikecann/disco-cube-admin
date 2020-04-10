@@ -13,7 +13,6 @@ interface Props {
   memUsagePercent: number;
   allSystemInfo: object;
   cpuTemperature: number;
-  batteryPercentage: number;
 }
 
 const getProgressStrokeColorFromPercentage = (percent: number) => {
@@ -28,7 +27,6 @@ export const StatsPageContent: React.FC<Props> = ({
   allSystemInfo,
   memUsagePercent,
   cpuTemperature,
-  batteryPercentage,
 }) => {
   return (
     <Segment spacing={10} width="100%" maxWidth={500} height={"100%"} scroll="vertical">

@@ -25,8 +25,8 @@ code {
   }
 }
 
-/* if portrait mode is detected, rotate the entire site -90 degrees to hint rotating to landscape */
-@media (orientation: portrait) {
+/* if portrait mode is detected, rotate the entire site -90 degrees to hint rotating to portrait */
+@media (orientation: landscape) {
   body {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);

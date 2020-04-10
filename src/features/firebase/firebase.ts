@@ -3,7 +3,6 @@ import "firebase/auth";
 import "firebase/analytics";
 import "firebase/firestore";
 import "firebase/database";
-import { CubeState } from "../cube/cube";
 import { FirebaseCollections } from "../../sharedTypes";
 
 const config = {
@@ -17,8 +16,8 @@ const config = {
   measurementId: "G-D9SX9GEWJY",
 };
 
-const cubeId = `fmNezwKQFxf0hWcQ4rhc1eMt9WM2`; // cube
-// const cubeId = nibEA4nCmebMoD6wVNa81KoMilq2`// local dev
+const cubeId = `DFaNSy9H4PQKb0ruA4FGq4xIPXI2`; // cube
+//const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
 
 export const initFirebase = () => {
   firebase.initializeApp(config);

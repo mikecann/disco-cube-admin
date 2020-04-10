@@ -2,8 +2,8 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { RPIDemos } from "./RPIDemos";
 import { useStore } from "effector-react";
-import { runningAppStore, sendAppCommand, appsCommandStore } from "../../features/apps/apps";
-import { StartRPIDemosCommand, StopRunningAppCommand } from "../../sharedTypes";
+import { runningAppStore, sendAppCommand, appsCommandStore } from "../../../../features/apps/apps";
+import { StartRPIDemosCommand, StopRunningAppCommand } from "../../../../sharedTypes";
 
 interface Props {}
 

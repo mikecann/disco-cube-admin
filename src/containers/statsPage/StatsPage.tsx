@@ -25,7 +25,6 @@ export const StatsPage: React.FC<Props> = ({}) => {
         cpuLoadsPercent={essential.cpuLoadsPercent}
         memUsagePercent={essential.memUsagePercent}
         allSystemInfo={fullSystemInfo}
-        batteryPercentage={essential.batteryLevelPercentage}
         cpuTemperature={essential.cpuTemperature}
       />
     </Page>

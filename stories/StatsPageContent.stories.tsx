@@ -19,7 +19,6 @@ const props: React.ComponentProps<typeof StatsPageContent> = {
       },
     },
   },
-  batteryPercentage: 33,
   cpuTemperature: 45.6,
 };
 

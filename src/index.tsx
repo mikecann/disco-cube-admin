@@ -27,15 +27,20 @@ async function bootstrap() {
     if (snapshot) appsSnapshotChanged(snapshot);
   });
 
+  let hasStarted = false;
   listenForFirebaseAuthStateChange(user => {
     if (user) {
       userSignedIn(user);
     } else {
       userSignedOut();
     }
-  });
 
-  ReactDOM.render(<App />, document.getElementById("root"));
+    // This is kinda ugh.. tbh
+    if (!hasStarted) {
+      hasStarted = true;
+      ReactDOM.render(<App />, document.getElementById("root"));
+    }
+  });
 }
 
 bootstrap();

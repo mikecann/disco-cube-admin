@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Segment } from "../segment/Segment";
 import { Menu } from "antd";
-import { CodeOutlined, ControlOutlined, UserOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { CodeOutlined, UserOutlined, AppstoreOutlined, DashboardOutlined } from "@ant-design/icons";
 import { Horizontal } from "gls/lib";
 import { routes } from "../../routes";
 
@@ -16,16 +16,16 @@ export const Footer: React.FC<Props> = ({ currentPath, onGotoPath }) => {
       <Horizontal horizontalAlign="center">
         <Menu selectedKeys={[currentPath]} mode="horizontal">
           <Menu.Item key="/stats" onClick={() => onGotoPath(routes.stats.path())}>
-            <ControlOutlined style={{ fontSize: "1.75em" }} />
+            <DashboardOutlined style={{ fontSize: "2em" }} />
           </Menu.Item>
           <Menu.Item key="/terminal" onClick={() => onGotoPath(routes.terminal.path())}>
-            <CodeOutlined style={{ fontSize: "1.75em" }} />
+            <CodeOutlined style={{ fontSize: "2em" }} />
           </Menu.Item>
           <Menu.Item key="/apps" onClick={() => onGotoPath(routes.apps.path())}>
-            <AppstoreOutlined style={{ fontSize: "1.75em" }} />
+            <AppstoreOutlined style={{ fontSize: "2em" }} />
           </Menu.Item>
           <Menu.Item key="/account" onClick={() => onGotoPath(routes.account.path())}>
-            <UserOutlined style={{ fontSize: "1.75em" }} />
+            <UserOutlined style={{ fontSize: "2em" }} />
           </Menu.Item>
         </Menu>
       </Horizontal>

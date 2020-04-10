@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Segment } from "../../components/segment/Segment";
+import { Segment } from "../../../../components/segment/Segment";
 import { VerticalSpacer } from "gls/lib";
 import { PageHeader } from "antd";
 

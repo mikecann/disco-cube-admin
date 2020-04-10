@@ -2,7 +2,7 @@ import * as React from "react";
 import { Segment } from "../../components/segment/Segment";
 import { Horizontal, Vertical, VerticalSpacer } from "gls/lib";
 import { Button, PageHeader, Divider } from "antd";
-import { BuildOutlined, HighlightOutlined } from "@ant-design/icons";
+import { BuildOutlined, HighlightOutlined, BugOutlined } from "@ant-design/icons";
 import { Label } from "../../components/label/Label";
 
 interface Props {
@@ -12,6 +12,26 @@ interface Props {
   onStopApp: () => any;
   onCancelCommand: () => any;
 }
+
+const iconStyles: React.CSSProperties = { fontSize: "2em" };
+
+const apps = {
+  rpiDemos: {
+    label: "RPI Demos",
+    icon: BuildOutlined,
+    page: "rpi-demos",
+  },
+  paint: {
+    label: "Paint",
+    icon: HighlightOutlined,
+    page: "paint",
+  },
+  debug: {
+    label: "Debug",
+    icon: BugOutlined,
+    page: "debug",
+  },
+};
 
 export const AppsPageContent: React.FC<Props> = ({
   onOpenPage,
@@ -53,26 +73,19 @@ export const AppsPageContent: React.FC<Props> = ({
       <VerticalSpacer space={20} />
       <Label>APPs</Label>
       <Horizontal spacing={20}>
-        <Button
-          type="primary"
-          style={{ width: 100, height: 100 }}
-          onClick={() => onOpenPage(`rpi-demos`)}
-        >
-          <Vertical horizontalAlign="center" verticalAlign="center">
-            <BuildOutlined style={{ fontSize: "2em" }} />
-            RPI Demos
-          </Vertical>
-        </Button>
-        <Button
-          type="primary"
-          style={{ width: 100, height: 100 }}
-          onClick={() => onOpenPage(`paint`)}
-        >
-          <Vertical horizontalAlign="center" verticalAlign="center">
-            <HighlightOutlined style={{ fontSize: "2em" }} />
-            Paint
-          </Vertical>
-        </Button>
+        {Object.entries(apps).map(([key, { page, icon: Icon, label }]) => (
+          <Button
+            key={key}
+            type="primary"
+            style={{ width: 100, height: 100 }}
+            onClick={() => onOpenPage(page)}
+          >
+            <Vertical horizontalAlign="center" verticalAlign="center" spacing={8}>
+              <Icon style={iconStyles} />
+              <div>{label}</div>
+            </Vertical>
+          </Button>
+        ))}
       </Horizontal>
     </Segment>
   );
