@@ -8,7 +8,7 @@ import {
   appsCommandStore,
   cancelAppCommand,
 } from "../../features/apps/apps";
-import { StopRunningAppCommand } from "../../sharedTypes";
+import { StopAppCommand } from "../../sharedTypes";
 
 interface Props {}
 
@@ -19,9 +19,9 @@ export const ConnectedAppsPageContent: React.FC<Props> = ({}) => {
 
   return (
     <AppsPageContent
-      onOpenPage={page => history.push(`/apps/${page}`)}
+      onOpenPage={page => history.push(`/apps${page}`)}
       runningAppName={runningApp?.name}
-      onStopApp={() => sendAppCommand(StopRunningAppCommand({}))}
+      onStopApp={() => sendAppCommand(StopAppCommand({}))}
       command={command?.kind}
       onCancelCommand={() => cancelAppCommand({})}
     />

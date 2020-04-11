@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { RPIDemos } from "./RPIDemos";
 import { useStore } from "effector-react";
 import { runningAppStore, sendAppCommand, appsCommandStore } from "../../../../features/apps/apps";
-import { StartRPIDemosCommand, StopRunningAppCommand } from "../../../../sharedTypes";
+import { StartAppCommand, StopAppCommand } from "../../../../sharedTypes";
 
 interface Props {}
 
@@ -16,8 +16,10 @@ export const ConnectedRpiDemos: React.FC<Props> = ({}) => {
       onBack={history.goBack}
       isRunning={runningApp != null}
       isCommand={appsCommand != null}
-      onStopDemo={() => sendAppCommand(StopRunningAppCommand({}))}
-      onStartDemo={({ demoId }) => sendAppCommand(StartRPIDemosCommand({ demoId }))}
+      onStopDemo={() => sendAppCommand(StopAppCommand({}))}
+      onStartDemo={({ demoId }) =>
+        sendAppCommand(StartAppCommand({ name: "rpiDemos", args: [`-${demoId}`] }))
+      }
     />
   );
 };

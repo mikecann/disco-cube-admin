@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Segment } from "../../components/segment/Segment";
-import { Horizontal, Vertical, VerticalSpacer } from "gls/lib";
+import { Horizontal, Vertical, VerticalSpacer, Grid } from "gls/lib";
 import { Button, PageHeader, Divider } from "antd";
 import { BuildOutlined, HighlightOutlined, BugOutlined } from "@ant-design/icons";
 import { Label } from "../../components/label/Label";
+import { apps } from "./AppsPage";
 
 interface Props {
   onOpenPage: (name: string) => any;
@@ -14,24 +15,6 @@ interface Props {
 }
 
 const iconStyles: React.CSSProperties = { fontSize: "2em" };
-
-const apps = {
-  rpiDemos: {
-    label: "RPI Demos",
-    icon: BuildOutlined,
-    page: "rpi-demos",
-  },
-  paint: {
-    label: "Paint",
-    icon: HighlightOutlined,
-    page: "paint",
-  },
-  debug: {
-    label: "Debug",
-    icon: BugOutlined,
-    page: "debug",
-  },
-};
 
 export const AppsPageContent: React.FC<Props> = ({
   onOpenPage,
@@ -72,13 +55,13 @@ export const AppsPageContent: React.FC<Props> = ({
 
       <VerticalSpacer space={20} />
       <Label>APPs</Label>
-      <Horizontal spacing={20}>
-        {Object.entries(apps).map(([key, { page, icon: Icon, label }]) => (
+      <Grid spacing={20}>
+        {Object.entries(apps).map(([key, { path, icon: Icon, label }]) => (
           <Button
             key={key}
             type="primary"
             style={{ width: 100, height: 100 }}
-            onClick={() => onOpenPage(page)}
+            onClick={() => onOpenPage(path)}
           >
             <Vertical horizontalAlign="center" verticalAlign="center" spacing={8}>
               <Icon style={iconStyles} />
@@ -86,7 +69,7 @@ export const AppsPageContent: React.FC<Props> = ({
             </Vertical>
           </Button>
         ))}
-      </Horizontal>
+      </Grid>
     </Segment>
   );
 };

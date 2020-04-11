@@ -68,9 +68,10 @@ export interface TerminalCommandExecution extends ReturnType<typeof TerminalComm
  */
 
 export type Apps = {
-  rpiDemos: RpiDemosState;
+  rpiDemos: AppState;
   paint: PaintAppState;
-  debug: DebugAppState;
+  debug: AppState;
+  sparkle: AppState;
 };
 
 export type AppNames = keyof Apps;
@@ -83,7 +84,7 @@ export interface AppsState extends ReturnType<typeof AppsState> {}
 
 export const AppExecution = (o: {
   name: AppNames;
-  state: AppStates;
+  //state: AppStates;
   status: "not-started" | "running";
   stdout: string;
   stderr: string;
@@ -97,38 +98,21 @@ export interface AppExecution extends ReturnType<typeof AppExecution> {}
  * App States
  */
 
-export const RpiDemosState = (o: {}) => {
-  return { ...o } as const;
-};
-export interface RpiDemosState extends ReturnType<typeof RpiDemosState> {}
+export const AppState = (o: {}) => ({ ...o } as const);
+export interface AppState extends ReturnType<typeof AppState> {}
 
-export const PaintAppState = (o: {}) => {
-  return { ...o } as const;
-};
+export const PaintAppState = (o: {}) => ({ ...o } as const);
 export interface PaintAppState extends ReturnType<typeof PaintAppState> {}
-
-export const DebugAppState = (o: {}) => {
-  return { ...o } as const;
-};
-export interface DebugAppState extends ReturnType<typeof DebugAppState> {}
 
 /**
  * App Commands
  */
 
-export type AppsCommands = StartRPIDemosCommand | StopRunningAppCommand | StartDebugAppCommand;
+export type AppsCommands = StartAppCommand | StopAppCommand;
 
-export const StartRPIDemosCommand = (o: { demoId: string }) => {
-  return { kind: "start-rpi-demos", ...o } as const;
-};
-export interface StartRPIDemosCommand extends ReturnType<typeof StartRPIDemosCommand> {}
+export const StartAppCommand = (o: { name: AppNames; args: string[] }) =>
+  ({ kind: "start-app", ...o } as const);
+export interface StartAppCommand extends ReturnType<typeof StartAppCommand> {}
 
-export const StartDebugAppCommand = (o: {}) => {
-  return { kind: "start-debug-app", ...o } as const;
-};
-export interface StartDebugAppCommand extends ReturnType<typeof StartDebugAppCommand> {}
-
-export const StopRunningAppCommand = (o: {}) => {
-  return { kind: "stop-app", ...o } as const;
-};
-export interface StopRunningAppCommand extends ReturnType<typeof StopRunningAppCommand> {}
+export const StopAppCommand = (o: {}) => ({ kind: "stop-app", ...o } as const);
+export interface StopAppCommand extends ReturnType<typeof StopAppCommand> {}
