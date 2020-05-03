@@ -11,8 +11,11 @@ import { userSignedIn, userSignedOut } from "./features/auth/auth";
 import { cubeSnapshotChanged } from "./features/cube/cube";
 import { terminalSnapshotChanged } from "./features/terminal/terminal";
 import { appsSnapshotChanged } from "./features/apps/apps";
+import { fixMobileBrowserWindow } from "./features/utils/mobile";
 
 async function bootstrap() {
+  fixMobileBrowserWindow();
+
   initFirebase();
 
   listenForFirebaseSnapshots("cubes", snapshot => {

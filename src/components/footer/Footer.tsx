@@ -14,7 +14,7 @@ export const Footer: React.FC<Props> = ({ currentPath, onGotoPath }) => {
   return (
     <Segment style={{ padding: 8 }} spacing={10} width="100%" maxWidth={500}>
       <Horizontal horizontalAlign="center">
-        <Menu selectedKeys={[currentPath]} mode="horizontal">
+        <Menu selectedKeys={[currentPath.split("/")[0]]} mode="horizontal">
           <Menu.Item key="/stats" onClick={() => onGotoPath(routes.stats.path())}>
             <DashboardOutlined style={{ fontSize: "2em" }} />
           </Menu.Item>

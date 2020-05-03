@@ -6,16 +6,16 @@ interface Props {}
 
 export const RootStyles: React.FC<Props> = ({ children }) => {
   return (
-    <Div100vh
+    <div
       style={{
         minWidth: "100hw",
-        minHeight: "100rvh",
+        minHeight: "100vh",
         backgroundColor: "#ccc",
       }}
     >
       <GLSDefaults.Provider value={{ verticalSpacing: 0, horizontalSpacing: 0 }}>
         {children}
       </GLSDefaults.Provider>
-    </Div100vh>
+    </div>
   );
 };
