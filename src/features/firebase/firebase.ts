@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/analytics";
 import "firebase/firestore";
 import "firebase/database";
-import { FirebaseCollections } from "../../sharedTypes";
+import { FirebaseCollections, dataConverter } from "../../sharedTypes";
 
 const config = {
   apiKey: "AIzaSyCNZOxJQX8x5-z2iWyMLCkKZ6sQjkaGZR8",
@@ -16,8 +16,8 @@ const config = {
   measurementId: "G-D9SX9GEWJY",
 };
 
-const cubeId = `DFaNSy9H4PQKb0ruA4FGq4xIPXI2`; // cube
-//const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
+//const cubeId = `DFaNSy9H4PQKb0ruA4FGq4xIPXI2`; // cube
+const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
 
 export const initFirebase = () => {
   firebase.initializeApp(config);
@@ -64,5 +64,5 @@ export const updateFirebaseState = <T extends keyof FirebaseCollections>(
     .firestore()
     .collection(collection)
     .doc(cubeId)
-    .update(partial);
+    .update(dataConverter.toFirestore(partial));
 };

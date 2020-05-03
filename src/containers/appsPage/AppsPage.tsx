@@ -4,14 +4,16 @@ import { useRouteMatch, Route, Switch } from "react-router";
 import { ConnectedRpiDemos } from "./apps/rpi/ConnectedRpiDemos";
 import { ConnectedAppsPageContent } from "./ConnectedAppsPageContent";
 import { AppNames } from "../../sharedTypes";
-import { ConnectedCommonApp } from "./apps/common/ConnectedSparkleApp";
+import { ConnectedCommonApp } from "./apps/common/ConnectedCommonApp";
 import {
   BuildOutlined,
   HighlightOutlined,
   BugOutlined,
   SmallDashOutlined,
+  StarOutlined,
 } from "@ant-design/icons";
 import { AntdIconProps } from "../../../node_modules/@ant-design/icons/lib/components/AntdIcon";
+import { ConnectedPaintApp } from "./apps/paint/ConnectedPaintApp";
 
 interface Props {}
 
@@ -34,7 +36,7 @@ export const apps: Record<
     path: `/paint`,
     label: "Paint",
     icon: HighlightOutlined,
-    render: () => <ConnectedCommonApp appName={`paint`} />,
+    render: () => <ConnectedPaintApp />,
   },
   debug: {
     path: `/debug`,
@@ -45,8 +47,14 @@ export const apps: Record<
   sparkle: {
     path: `/sparkle`,
     label: "Sparkle",
-    icon: SmallDashOutlined,
+    icon: StarOutlined,
     render: () => <ConnectedCommonApp appName={`sparkle`} />,
+  },
+  sprinkles: {
+    path: `/sprinkles`,
+    label: "Sprinkles",
+    icon: SmallDashOutlined,
+    render: () => <ConnectedCommonApp appName={`sprinkles`} />,
   },
 };
 
