@@ -14,7 +14,7 @@ export const LoginPage: React.FC<Props> = ({}) => {
   if (user) return <Redirect to={routes.stats.path()} />;
 
   return (
-    <Vertical horizontalAlign="center" verticalAlign="center" minHeight="100vh">
+    <Vertical horizontalAlign="center" verticalAlign="center">
       <LoginContent loading={isLoggingIn} onLogin={loginEffect} />
     </Vertical>
   );

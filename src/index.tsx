@@ -14,7 +14,7 @@ import { appsSnapshotChanged } from "./features/apps/apps";
 import { fixMobileBrowserWindow } from "./features/utils/mobile";
 
 async function bootstrap() {
-  fixMobileBrowserWindow();
+  //fixMobileBrowserWindow();
 
   initFirebase();
 
