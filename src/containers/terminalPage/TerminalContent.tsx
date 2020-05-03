@@ -24,6 +24,8 @@ export const TerminalContent: React.FC<Props> = ({ history, onSendCommand, cwd, 
     search.current.input.focus();
   }, [history]);
 
+  console.log("history", history);
+
   return (
     <Segment spacing={10} width="100%" maxWidth={500} height={"100%"}>
       <Vertical

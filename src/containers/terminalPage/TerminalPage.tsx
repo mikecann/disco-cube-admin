@@ -13,8 +13,10 @@ export const TerminalPage: React.FC<Props> = ({}) => {
       <TerminalContent
         cwd={cwd}
         status={status}
-        history={history}
         onSendCommand={sendTerminalCommandEffect}
+        // Hack, sometimes it becomes an empty object instead of empty array
+        // not sure why but this fixes it
+        history={typeof history == "object" ? [] : history}
       />
     </Page>
   );
