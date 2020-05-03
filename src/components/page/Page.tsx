@@ -13,7 +13,7 @@ export const Page: React.FC<Props> = ({ children }) => {
     <Vertical
       horizontalAlign="center"
       verticalAlign="center"
-      height="100vh"
+      style={{ height: innerHeight }}
       padding={10}
       spacing={10}
     >
