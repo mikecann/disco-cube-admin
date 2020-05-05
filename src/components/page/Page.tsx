@@ -19,7 +19,7 @@ export const Page: React.FC<Props> = ({ children }) => {
     >
       <AuthRequired />
       <ConnectedCubeNotConnectedBanner />
-      <div style={{ overflowY: "auto", height: innerHeight - 110, width: "100%", maxWidth: 500 }}>
+      <div style={{ overflowY: "auto", height: innerHeight - 100, width: "100%", maxWidth: 500 }}>
         {children}
       </div>
       <ConnectedFooter />

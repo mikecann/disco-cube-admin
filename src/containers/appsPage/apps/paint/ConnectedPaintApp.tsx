@@ -23,7 +23,6 @@ export const ConnectedPaintApp: React.FC<Props> = ({}) => {
       isCommand={appsCommand != null}
       onStop={() => sendAppCommand(StopAppCommand({}))}
       onStart={({}) => sendAppCommand(StartAppCommand({ name: `paint`, args: [] }))}
-      state={PaintAppState({ faces: [] })}
       onAppStateUpdated={state => sendAppCommand(UpdateAppState({ app: "paint", state }))}
     />
   );

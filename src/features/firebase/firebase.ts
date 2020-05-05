@@ -16,8 +16,8 @@ const config = {
   measurementId: "G-D9SX9GEWJY",
 };
 
-//const cubeId = `DFaNSy9H4PQKb0ruA4FGq4xIPXI2`; // cube
-const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
+const cubeId = `DFaNSy9H4PQKb0ruA4FGq4xIPXI2`; // cube
+//const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
 
 export const initFirebase = () => {
   firebase.initializeApp(config);
@@ -60,9 +60,10 @@ export const updateFirebaseState = <T extends keyof FirebaseCollections>(
   collection: T,
   partial: Partial<FirebaseCollections[T]>
 ) => {
+  const converted = dataConverter.toFirestore(partial);
   return firebase
     .firestore()
     .collection(collection)
     .doc(cubeId)
-    .update(dataConverter.toFirestore(partial));
+    .update(converted);
 };

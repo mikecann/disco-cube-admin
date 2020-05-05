@@ -7,7 +7,6 @@ import { PaintControls } from "./PaintControls";
 import { PaintingSettings } from "./types";
 import { PaintAppState } from "../../../../sharedTypes";
 import { narray } from "../../../../features/utils/misc";
-import { setAt } from "typescript-immutable-utils";
 
 interface Props {
   onBack: () => any;
@@ -15,7 +14,6 @@ interface Props {
   onStop: () => any;
   isRunning: boolean;
   isCommand: boolean;
-  state: PaintAppState;
   onAppStateUpdated: (newState: PaintAppState) => any;
 }
 
@@ -26,7 +24,6 @@ export const PaintApp: React.FC<Props> = ({
   onStart,
   onAppStateUpdated,
   onStop,
-  state,
 }) => {
   const [settings, setSettings] = React.useState<PaintingSettings>({
     bushSize: 1,
@@ -68,9 +65,7 @@ export const PaintApp: React.FC<Props> = ({
                   width={64}
                   height={64}
                   settings={settings}
-                  onDataChanged={data =>
-                    onAppStateUpdated({ ...state, faces: setAt(state.faces, i, data) })
-                  }
+                  onDataChanged={data => onAppStateUpdated({ face: i, data })}
                 />
               </Tabs.TabPane>
             ))}

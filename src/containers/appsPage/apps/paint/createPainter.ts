@@ -1,5 +1,6 @@
 import { Application, Sprite, Texture, SCALE_MODES } from "pixi.js";
 import { PaintingSettings } from "./types";
+import { dropAlphaChannel } from "../../../../features/utils/misc";
 
 type Options = {
   canvas: HTMLCanvasElement;
@@ -27,10 +28,8 @@ export const createPainter = ({ canvas, width, height, paintSettings, onDataChan
   const sprite = new Sprite(buffer.getTexture());
   sprite.interactive = true;
 
-  // Drawing to the buffer
   let isPointerDown = false;
-  sprite.addListener("pointerdown", e => (isPointerDown = true));
-  sprite.addListener("pointermove", e => {
+  const paint = (e: PIXI.interaction.InteractionEvent) => {
     if (!isPointerDown) return;
     const local = sprite.transform.worldTransform.applyInverse(e.data.global);
     const px = Math.max(0, Math.min(Math.floor(local.x), width - 1));
@@ -44,10 +43,21 @@ export const createPainter = ({ canvas, width, height, paintSettings, onDataChan
       settings.brushColor.b
     );
     sprite.texture = buffer.getTexture();
+  };
+
+  // Drawing to the buffer
+  sprite.addListener("pointerdown", e => {
+    isPointerDown = true;
+    paint(e);
   });
+  sprite.addListener("pointermove", paint);
   sprite.addListener("pointerup", () => {
     isPointerDown = false;
-    onDataChanged(buffer.getData());
+    onDataChanged(buffer.getRGBData());
+  });
+  sprite.addListener("pointerupoutside", () => {
+    isPointerDown = false;
+    onDataChanged(buffer.getRGBData());
   });
   app.stage.addChild(sprite);
 
@@ -66,23 +76,23 @@ export const createPainter = ({ canvas, width, height, paintSettings, onDataChan
 const randomByte = () => Math.floor(Math.random() * 256);
 
 const createBuffer = (width: number, height: number) => {
-  const data = new Uint8Array(width * height * 4);
+  const rdbaData = new Uint8Array(width * height * 4);
 
   const getTexture = () =>
-    Texture.fromBuffer(data, width, height, { scaleMode: SCALE_MODES.NEAREST });
+    Texture.fromBuffer(rdbaData, width, height, { scaleMode: SCALE_MODES.NEAREST });
 
   const getPixelIndex = (x: number, y: number) => y * width * 4 + x * 4;
 
-  const getData = () => data;
+  const getRGBData = () => dropAlphaChannel(rdbaData);
 
   const fillRandom = () => {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const index = getPixelIndex(x, y);
-        data[index + 0] = randomByte();
-        data[index + 1] = randomByte();
-        data[index + 2] = randomByte();
-        data[index + 3] = 255;
+        rdbaData[index + 0] = randomByte();
+        rdbaData[index + 1] = randomByte();
+        rdbaData[index + 2] = randomByte();
+        rdbaData[index + 3] = 255;
       }
     }
   };
@@ -91,10 +101,10 @@ const createBuffer = (width: number, height: number) => {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const index = getPixelIndex(x, y);
-        data[index + 0] = r;
-        data[index + 1] = g;
-        data[index + 2] = b;
-        data[index + 3] = 255;
+        rdbaData[index + 0] = r;
+        rdbaData[index + 1] = g;
+        rdbaData[index + 2] = b;
+        rdbaData[index + 3] = 255;
       }
     }
   };
@@ -111,10 +121,10 @@ const createBuffer = (width: number, height: number) => {
     if (g < 0 || g >= 256) throw new Error(`green out of bounds`);
     if (b < 0 || b >= 256) throw new Error(`blue out of bounds`);
     const index = getPixelIndex(x, y);
-    data[index + 0] = r;
-    data[index + 1] = g;
-    data[index + 2] = b;
-    data[index + 3] = 255;
+    rdbaData[index + 0] = r;
+    rdbaData[index + 1] = g;
+    rdbaData[index + 2] = b;
+    rdbaData[index + 3] = 255;
   };
 
   const paint = (x: number, y: number, size: number, r: number, g: number, b: number) => {
@@ -135,7 +145,7 @@ const createBuffer = (width: number, height: number) => {
     fill,
     paint,
     getTexture,
-    getData,
+    getRGBData,
     setPixel,
   };
 };
