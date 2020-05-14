@@ -10,10 +10,18 @@ import {
   HighlightOutlined,
   BugOutlined,
   SmallDashOutlined,
+  VideoCameraOutlined,
   StarOutlined,
+  PictureOutlined,
+  MoreOutlined,
+  DeploymentUnitOutlined,
+  RotateRightOutlined,
+  TableOutlined,
 } from "@ant-design/icons";
 import { AntdIconProps } from "../../../node_modules/@ant-design/icons/lib/components/AntdIcon";
 import { ConnectedPaintApp } from "./apps/paint/ConnectedPaintApp";
+import { ConnectedVideoApp } from "./apps/video/ConnectedVideoApp";
+import { ConnectedCubemapApp } from "./apps/cubemap/ConnectedCubemapApp";
 
 interface Props {}
 
@@ -31,6 +39,18 @@ export const apps: Record<
     label: "RPI Demos",
     icon: BuildOutlined,
     render: () => <ConnectedRpiDemos />,
+  },
+  video: {
+    path: `/video`,
+    label: "Video",
+    icon: VideoCameraOutlined,
+    render: () => <ConnectedVideoApp />,
+  },
+  cubemap: {
+    path: `/cubemap`,
+    label: "Cubemap",
+    icon: PictureOutlined,
+    render: () => <ConnectedCubemapApp />,
   },
   paint: {
     path: `/paint`,
@@ -55,6 +75,30 @@ export const apps: Record<
     label: "Sprinkles",
     icon: SmallDashOutlined,
     render: () => <ConnectedCommonApp appName={`sprinkles`} />,
+  },
+  particles: {
+    path: `/particles`,
+    label: "Particles",
+    icon: MoreOutlined,
+    render: () => <ConnectedCommonApp appName={`particles`} />,
+  },
+  particleFlow: {
+    path: `/particleFlow`,
+    label: "Particle Flow",
+    icon: DeploymentUnitOutlined,
+    render: () => <ConnectedCommonApp appName={`particleFlow`} />,
+  },
+  tilt: {
+    path: `/tilt`,
+    label: "Tilt",
+    icon: RotateRightOutlined,
+    render: () => <ConnectedCommonApp appName={`tilt`} />,
+  },
+  maze: {
+    path: `/maze`,
+    label: "Maze",
+    icon: TableOutlined,
+    render: () => <ConnectedCommonApp appName={`maze`} />,
   },
 };
 

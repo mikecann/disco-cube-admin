@@ -52,10 +52,12 @@ export const createPainter = ({ canvas, width, height, paintSettings, onDataChan
   });
   sprite.addListener("pointermove", paint);
   sprite.addListener("pointerup", () => {
+    if (!isPointerDown) return;
     isPointerDown = false;
     onDataChanged(buffer.getRGBData());
   });
   sprite.addListener("pointerupoutside", () => {
+    if (!isPointerDown) return;
     isPointerDown = false;
     onDataChanged(buffer.getRGBData());
   });

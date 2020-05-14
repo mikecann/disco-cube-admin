@@ -3,12 +3,7 @@ import { useHistory } from "react-router";
 import { PaintApp } from "./PaintApp";
 import { useStore } from "effector-react";
 import { runningAppStore, appsCommandStore, sendAppCommand } from "../../../../features/apps/apps";
-import {
-  StopAppCommand,
-  StartAppCommand,
-  PaintAppState,
-  UpdateAppState,
-} from "../../../../sharedTypes";
+import { StopAppCommand, StartAppCommand, UpdateAppState } from "../../../../sharedTypes";
 
 interface Props {}
 

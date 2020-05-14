@@ -2,7 +2,7 @@ import * as React from "react";
 import { Horizontal, Vertical } from "gls/lib";
 import { PaintingSettings } from "./types";
 import { Slider } from "antd";
-import { SketchPicker } from "react-color";
+import { SketchPicker, HuePicker, SliderPicker } from "react-color";
 
 interface Props {
   settings: PaintingSettings;
@@ -42,7 +42,17 @@ export const PaintControls: React.FC<Props> = ({ settings, onSettingsChange }) =
           }}
         ></div>
         {pickerVisible && (
-          <div style={{ position: "absolute", top: -0, right: -0, zIndex: 10000 }}>
+          <Vertical
+            style={{
+              position: "absolute",
+              top: -0,
+              right: -0,
+              zIndex: 10000,
+              padding: 20,
+              background: "white",
+              borderRadius: 6,
+            }}
+          >
             <div
               style={{
                 position: "fixed",
@@ -58,11 +68,12 @@ export const PaintControls: React.FC<Props> = ({ settings, onSettingsChange }) =
                 return false;
               }}
             ></div>
-            <SketchPicker
+
+            <HuePicker
               color={settings.brushColor}
               onChange={color => onSettingsChange({ ...settings, brushColor: color.rgb })}
             />
-          </div>
+          </Vertical>
         )}
       </Vertical>
     </Horizontal>
