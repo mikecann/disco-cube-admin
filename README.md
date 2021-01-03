@@ -5,3 +5,4 @@
 The admin panel for my disco cube project.
 
 It interfaces with Firebase to send and receive data from the Daemon that is running on the cube: https://github.com/mikecann/disco-cube-daemon
+
