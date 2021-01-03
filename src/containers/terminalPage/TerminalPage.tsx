@@ -8,6 +8,7 @@ interface Props {}
 
 export const TerminalPage: React.FC<Props> = ({}) => {
   const { history, status, cwd } = useStore(terminalStore);
+  console.log("HISTORY", history);
   return (
     <Page>
       <TerminalContent
@@ -16,7 +17,7 @@ export const TerminalPage: React.FC<Props> = ({}) => {
         onSendCommand={sendTerminalCommandEffect}
         // Hack, sometimes it becomes an empty object instead of empty array
         // not sure why but this fixes it
-        history={typeof history == "object" ? [] : history}
+        history={history}
       />
     </Page>
   );
