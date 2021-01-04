@@ -4,23 +4,21 @@ import "firebase/analytics";
 import "firebase/firestore";
 import "firebase/database";
 import { FirebaseCollections, dataConverter } from "../../sharedTypes";
+import { config } from "../../common/config/config";
 
-const config = {
-  apiKey: "AIzaSyCNZOxJQX8x5-z2iWyMLCkKZ6sQjkaGZR8",
-  authDomain: "disco-cube.firebaseapp.com",
-  databaseURL: "https://disco-cube.firebaseio.com",
-  projectId: "disco-cube",
-  storageBucket: "disco-cube.appspot.com",
-  messagingSenderId: "239577858848",
-  appId: "1:239577858848:web:f84d626c0604a452698d45",
-  measurementId: "G-D9SX9GEWJY",
-};
-
-const cubeId = `kvRNzi797sXjtcATPaHy043iYST2`; // cube
-//const cubeId = `nibEA4nCmebMoD6wVNa81KoMilq2`; // local dev
+const produceFirebaseConfig = () => ({
+  apiKey: config.FIREBASE_API_KEY,
+  authDomain: config.FIREBASE_AUTH_DOMAIN,
+  databaseURL: config.FIREBASE_DATABASE_URL,
+  projectId: config.FIREBASE_PROJECT_ID,
+  storageBucket: config.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: config.FIREBASE_MESSAGE_SENDER_ID,
+  appId: config.FIREBASE_APP_ID,
+  measurementId: config.FIREBASE_MEASUREMENT_ID,
+});
 
 export const initFirebase = () => {
-  firebase.initializeApp(config);
+  firebase.initializeApp(produceFirebaseConfig());
   firebase.analytics();
 };
 
@@ -41,7 +39,7 @@ export const listenForFirebaseSnapshots = <T extends keyof FirebaseCollections>(
   firebase
     .firestore()
     .collection(collection)
-    .doc(cubeId)
+    .doc(config.CUBE_ID)
     .onSnapshot(x => handler(x.data() as any));
 };
 
@@ -52,7 +50,7 @@ export const setFirebaseState = <T extends keyof FirebaseCollections>(
   return firebase
     .firestore()
     .collection(collection)
-    .doc(cubeId)
+    .doc(config.CUBE_ID)
     .set(state);
 };
 
@@ -64,6 +62,6 @@ export const updateFirebaseState = <T extends keyof FirebaseCollections>(
   return firebase
     .firestore()
     .collection(collection)
-    .doc(cubeId)
+    .doc(config.CUBE_ID)
     .update(converted);
 };

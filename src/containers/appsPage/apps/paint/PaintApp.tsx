@@ -39,7 +39,7 @@ export const PaintApp: React.FC<Props> = ({
         subTitle={"PAINT"}
         extra={[
           isRunning ? (
-            <Button key="stop" type="danger" onClick={onStop}>
+            <Button key="stop" type="primary" onClick={onStop}>
               Stop
             </Button>
           ) : (

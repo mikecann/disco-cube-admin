@@ -45,7 +45,7 @@ export const CubemapApp: React.FC<Props> = ({
           </Button>
         )}
         {isRunning && (
-          <Button type="danger" onClick={onStopCubemap}>
+          <Button type="primary" onClick={onStopCubemap}>
             Stop
           </Button>
         )}

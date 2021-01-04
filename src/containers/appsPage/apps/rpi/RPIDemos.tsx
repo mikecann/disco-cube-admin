@@ -66,7 +66,7 @@ export const RPIDemos: React.FC<Props> = ({
           </Button>
         )}
         {isRunning && (
-          <Button type="danger" onClick={onStopDemo}>
+          <Button type="primary" onClick={onStopDemo}>
             Stop
           </Button>
         )}

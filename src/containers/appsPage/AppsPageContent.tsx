@@ -35,7 +35,7 @@ export const AppsPageContent: React.FC<Props> = ({
         <Label>RUNNING APP</Label>
         <div>{runningAppName ? runningAppName : "NONE"}</div>
         {runningAppName && (
-          <Button onClick={onStopApp} type="danger" style={{ width: 200 }}>
+          <Button onClick={onStopApp} type="primary" style={{ width: 200 }}>
             Stop
           </Button>
         )}
@@ -47,7 +47,7 @@ export const AppsPageContent: React.FC<Props> = ({
         <Label>command</Label>
         <div>{command ? command : "NONE"}</div>
         {command && (
-          <Button onClick={onCancelCommand} type="danger" style={{ width: 200 }}>
+          <Button onClick={onCancelCommand} type="primary" style={{ width: 200 }}>
             Cancel
           </Button>
         )}

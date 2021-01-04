@@ -29,7 +29,7 @@ export const createPainter = ({ canvas, width, height, paintSettings, onDataChan
   sprite.interactive = true;
 
   let isPointerDown = false;
-  const paint = (e: PIXI.interaction.InteractionEvent) => {
+  const paint = (e: PIXI.InteractionEvent) => {
     if (!isPointerDown) return;
     const local = sprite.transform.worldTransform.applyInverse(e.data.global);
     const px = Math.max(0, Math.min(Math.floor(local.x), width - 1));

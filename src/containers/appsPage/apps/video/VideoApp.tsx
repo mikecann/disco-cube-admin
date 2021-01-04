@@ -49,7 +49,7 @@ export const VideoApp: React.FC<Props> = ({
           </Button>
         )}
         {isRunning && (
-          <Button type="danger" onClick={onStopVideo}>
+          <Button type="primary" onClick={onStopVideo}>
             Stop
           </Button>
         )}

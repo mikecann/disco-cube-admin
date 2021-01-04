@@ -20,7 +20,7 @@ export const PaintControls: React.FC<Props> = ({ settings, onSettingsChange }) =
         value={settings.bushSize}
         min={1}
         max={10}
-        onChange={v => onSettingsChange({ ...settings, bushSize: Array.isArray(v) ? 0 : v })}
+        onChange={(v: any) => onSettingsChange({ ...settings, bushSize: Array.isArray(v) ? 0 : v })}
       />
       <Vertical
         style={{

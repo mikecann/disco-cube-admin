@@ -35,7 +35,7 @@ export const CommonApp: React.FC<Props> = ({
         </Button>
       )}
       {isRunning && (
-        <Button type="danger" onClick={onStop}>
+        <Button type="primary" onClick={onStop}>
           Stop
         </Button>
       )}

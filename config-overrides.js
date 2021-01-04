@@ -44,9 +44,9 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: { "@primary-color": "#49baac" },
-  }),
+  })
 
-  addWebpackPlugin(new AntdDayjsWebpackPlugin())
+  //addWebpackPlugin(new AntdDayjsWebpackPlugin())
 
   // used to minimise bundle size by 500KB
   // function(config, env) {
